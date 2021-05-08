@@ -1,6 +1,7 @@
 <?php
 namespace JohnnyFreeman\LaravelTurbo;
 
+use Illuminate\Support\Facades\Response;
 use Illuminate\Contracts\Support\Responsable;
 
 class TurboStream implements Responsable
@@ -45,8 +46,8 @@ class TurboStream implements Responsable
     }
 
     public function toResponse($request) {
-        return response()->view('common.turbo-streams', [
+        return Response::view('turbo::turbo-streams', [
             'streams' => $this->streams
-        ])->header('Content-Type', static::CONTENT_TYPE . '; charset=utf-8');
+        ])->header('Content-Type', Turbo::CONTENT_TYPE . '; charset=utf-8');
     }
 }
