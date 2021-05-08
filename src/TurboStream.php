@@ -45,7 +45,8 @@ class TurboStream implements Responsable
         return $this;
     }
 
-    public function toResponse($request) {
+    public function toResponse($request)
+    {
         return Response::view('turbo::turbo-streams', [
             'streams' => $this->streams
         ])->header('Content-Type', Turbo::CONTENT_TYPE . '; charset=utf-8');
