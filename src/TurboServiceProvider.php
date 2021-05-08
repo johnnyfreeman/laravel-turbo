@@ -10,6 +10,8 @@ class TurboServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'turbo');
+
         Request::macro('wantsTurboStream', function () {
             return Str::contains($this->headers->get('Accept'), Turbo::CONTENT_TYPE);
         });
