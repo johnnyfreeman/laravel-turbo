@@ -1,0 +1,27 @@
+{
+    "name": "johnnyfreeman/laravel-turbo",
+    "description": "Hotwire Turbo integration for Laravel.",
+    "keywords": ["laravel", "hotwire", "turbo"],
+    "license": "MIT",
+    "require": {
+        "illuminate/contracts": "^8.40",
+        "illuminate/support": "^8.40"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "JohnnyFreeman\\LaravelTurbo\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "JohnnyFreeman\\LaravelTurbo\\TurboServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
