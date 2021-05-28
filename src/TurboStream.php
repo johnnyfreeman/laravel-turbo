@@ -1,10 +1,13 @@
 <?php
+
 namespace JohnnyFreeman\LaravelTurbo;
 
 use Illuminate\Support\Facades\Response;
+use Illuminate\Contracts\Support\Htmlable;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Contracts\Support\Responsable;
 
-class TurboStream implements Responsable
+class TurboStream implements Htmlable, Renderable, Responsable
 {
     public $status = 200;
 
@@ -20,50 +23,61 @@ class TurboStream implements Responsable
         $this->headers = array_merge($this->headers, $headers);
     }
 
-    public function append($target, $view, $data)
+    public function append($target, $view)
     {
-        return $this->stream('append', $target, $view, $data);
-    }
-    
-    public function prepend($target, $view, $data)
-    {
-        return $this->stream('prepend', $target, $view, $data);
+        return $this->stream('append', $target, $view);
     }
 
-    public function replace($target, $view, $data)
+    public function prepend($target, $view)
     {
-        return $this->stream('replace', $target, $view, $data);
+        return $this->stream('prepend', $target, $view);
     }
 
-    public function update($target, $view, $data)
+    public function replace($target, $view)
     {
-        return $this->stream('update', $target, $view, $data);
+        return $this->stream('replace', $target, $view);
     }
 
-    public function remove($target, $view, $data)
+    public function update($target, $view)
     {
-        return $this->stream('remove', $target, $view, $data);
+        return $this->stream('update', $target, $view);
     }
 
-    public function stream($action, $target, $view, $data)
+    public function remove($target, $view)
     {
-        array_push($this->streams, [
-            'action' => $action,
-            'target' => $target,
-            'view' => $view,
-            'data' => $data,
-        ]);
+        return $this->stream('remove', $target, $view);
+    }
+
+    public function stream($action, $target, $view)
+    {
+        array_push($this->streams, compact('action', 'target', 'view'));
 
         return $this;
     }
 
+    public function toHtml()
+    {
+        return $this->__toString();
+    }
+
+    public function render()
+    {
+        return $this->__toString();
+    }
+
     public function toResponse($request)
     {
-        return Response::view(
-            'turbo::turbo-streams',
-            ['streams' => $this->streams],
+        return Response::make(
+            $this->__toString(),
             $this->status,
             $this->headers
         );
+    }
+
+    public function __toString()
+    {
+        return (string) view('turbo::turbo-streams', [
+            'streams' => $this->streams
+        ]);
     }
 }
