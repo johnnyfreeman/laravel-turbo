@@ -11,16 +11,16 @@ class TurboStream implements Htmlable, Renderable, Responsable
 {
     public $status = 200;
 
-    public $headers = [
-        "Content-Type" => "{Turbo::CONTENT_TYPE}; charset=utf-8"
-    ];
+    public $headers;
 
     public $streams = [];
 
     public function __construct($status = 200, array $headers = [])
     {
         $this->status = $status;
-        $this->headers = array_merge($this->headers, $headers);
+        $this->headers = array_merge([
+            'Content-Type' => Turbo::CONTENT_TYPE . '; charset=utf-8'
+        ], $headers);
     }
 
     public function append($target, $view)
