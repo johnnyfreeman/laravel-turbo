@@ -25,12 +25,8 @@ class PostCommentController
 
         if ($request->wantsTurboStream()) {
             return turbo_stream()
-                ->prepend('comments', 'posts.comment', [
-                    'text' => $comment->text
-                ])
-                ->append('notifications', 'notifications.simple', [
-                    'title' => 'Post comment created!'
-                ]);
+                ->prepend('comments', view('posts.comment', ['text' => $comment->text]))
+                ->append('notifications', view('notifications.simple', ['title' => 'Post comment created!']));
         }
 
         return back();
