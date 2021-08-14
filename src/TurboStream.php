@@ -2,6 +2,7 @@
 
 namespace JohnnyFreeman\LaravelTurbo;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\Support\Renderable;
@@ -76,7 +77,7 @@ class TurboStream implements Htmlable, Renderable, Responsable
 
     public function __toString()
     {
-        return (string) view('turbo::turbo-streams', [
+        return (string) View::make('turbo::turbo-streams', [
             'streams' => $this->streams
         ]);
     }
