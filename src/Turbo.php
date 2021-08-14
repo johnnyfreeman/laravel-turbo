@@ -1,4 +1,5 @@
 <?php
+
 namespace JohnnyFreeman\LaravelTurbo;
 
 class Turbo
