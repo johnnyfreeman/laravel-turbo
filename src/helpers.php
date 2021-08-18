@@ -48,7 +48,7 @@ if (! function_exists('component')) {
 
         $view = value($component->resolveView(), $data->toArray());
 
-        return $view instanceof View
+        return $view instanceof \Illuminate\View\View
             ? $view->with($component->data())
             : View::make($view, $component->data());
     }
