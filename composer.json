@@ -4,10 +4,10 @@
     "keywords": ["laravel", "hotwire", "turbo"],
     "license": "MIT",
     "require": {
-        "illuminate/container": "^9.1",
-        "illuminate/contracts": "^9.1",
-        "illuminate/support": "^9.1",
-        "illuminate/view": "^9.1"
+        "illuminate/container": "^10.3",
+        "illuminate/contracts": "^10.3",
+        "illuminate/support": "^10.3",
+        "illuminate/view": "^10.3"
     },
     "config": {
         "sort-packages": true

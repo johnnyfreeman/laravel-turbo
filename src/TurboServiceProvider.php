@@ -13,7 +13,7 @@ class TurboServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'turbo');
 
         Request::macro('wantsTurboStream', function () {
-            return Str::contains($this->headers->get('Accept'), Turbo::CONTENT_TYPE);
+            return Str::contains($this->headers->get('Accept'), TurboStream::CONTENT_TYPE);
         });
     }
 }
